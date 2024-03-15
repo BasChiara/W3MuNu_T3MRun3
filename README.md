@@ -14,13 +14,22 @@ The genfragment path is `Configuration/GenProduction/python/ppW3MuNu_fragment.py
 N.B. always build the code with `scram b -j 8` after modifying the fragment
 
 ## LHE -> GEN-SIM step
-Produce the configuration file with the Run3Summer22EE campaign. The condition can be retrived from [McM](https://cms-pdmv-prod.web.cern.ch/mcm/requests?dataset_name=WtoTauNu_Tauto3Mu_TuneCP5_13p6TeV_pythia8&page=0&shown=127)
 ```
 cd production/LHE-GENSIM_production
 ```
-if you need to change the condition modify `LHE-SIM.sh` and run
+Configuration files are produced with the Run3Summer22EE campaign conditions ([McM](https://cms-pdmv-prod.web.cern.ch/mcm/requests?dataset_name=WtoTauNu_Tauto3Mu_TuneCP5_13p6TeV_pythia8&page=0&shown=127)).\
+If you don't need to change such configuration just modify the number of events, the gridpack location and wheter you want to run on CRAB or not in `privateproduction_LHEGS.sh`, then run
 ```
-source LHE-SIM.sh
+source privateproduction_LHEGS.sh
 ```
-the script produces a configfile `ppW3MuNu_fragment_LHEGS_cfg_draft.py`, if existing already, it is processed via `cmsRun`.\
-CRAB production : it is convenient not to produce LHE in output to save job disk quota.
+the code will produce the config files `ppW3MuNu_fragment_LHEGS_cfg.py` and `crabconfig.py` with the gridpack location and number of events accordingly.
+> [!NOTE]
+>If you need to **change the campaign conditions** modify `LHE-SIM.sh` and run
+>```
+>rm ppW3MuNu_fragment_LHEGS_cfg_draft.py
+>source LHE-SIM.sh
+>```
+>The script produces a configfile `ppW3MuNu_fragment_LHEGS_cfg_draft.py` (if existing already, it is processed via `cmsRun`).
+## GEN-SIM -> AODSIM step
+
+
