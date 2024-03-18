@@ -15,7 +15,7 @@ N.B. always build the code with `scram b -j 8` after modifying the fragment
 
 ## LHE -> GEN-SIM step
 ```
-cd production/LHE-GENSIM_production
+cd LHE-GENSIM_production
 ```
 Configuration files are produced with the Run3Summer22EE campaign conditions ([McM](https://cms-pdmv-prod.web.cern.ch/mcm/requests?dataset_name=WtoTauNu_Tauto3Mu_TuneCP5_13p6TeV_pythia8&page=0&shown=127)).\
 If you don't need to change such configuration just modify the number of events, the gridpack location and wheter you want to run on CRAB or not in `privateproduction_LHEGS.sh`, then run
@@ -31,5 +31,9 @@ the code will produce the config files `ppW3MuNu_fragment_LHEGS_cfg.py` and `cra
 >```
 >The script produces a configfile `ppW3MuNu_fragment_LHEGS_cfg_draft.py` (if existing already, it is processed via `cmsRun`).
 ## GEN-SIM -> AODSIM step
+```
+cd  GENSIM-AODSIM_production
+```
+If you want to produce AODSIM data with Run3Summer22EE configuration just just modify the number of events and the GENSIM data location in `privateproduction_GENSimAODSim.py`
 
 
