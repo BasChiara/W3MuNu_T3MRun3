@@ -24,7 +24,7 @@ config.General.transferOutputs = True
 config.General.transferLogs = True
 
 config.section_('Data')
-config.Data.publication = False
+config.Data.publication = True
 config.Data.outputPrimaryDataset = process_name + '_MGv5NLO_pythia8_' + step
 config.Data.outLFNDirBase = '/store/group/phys_bphys/cbasile/%s' % (config.General.workArea)
 config.Data.splitting = 'EventBased'
