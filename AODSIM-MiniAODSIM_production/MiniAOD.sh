@@ -1,0 +1,13 @@
+cmsDriver.py step1                                  \
+  --mc                                              \
+  --python_filename ppW3MuNu_Run3Summer22EEMiniAODsim_cfg.py \
+  --eventcontent MINIAODSIM                         \
+  --datatier MINIAODSIM                             \
+  --conditions 130X_mcRun3_2022_realistic_postEE_v6 \
+  --step PAT                                        \
+  --customise Configuration/DataProcessing/Utils.addMonitoring \
+  --geometry DB:Extended                            \
+  --era Run3,run3_miniAOD_12X                       \
+  --filein file:AODsim.root                         \
+  --fileout file:ppW3MuNu_Run3Summer22EEMiniAODsim.root' \
+  -n -1
