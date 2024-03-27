@@ -7,6 +7,7 @@ For LHE-GEN and GEN-AOD step use `CMSSW_12_4_19` :
 cmsrel CMSSW_12_4_19
 cd CMSSW_12_4_19/src/
 cmsenv
+git cms-init
 scram b -j 8
 git clone git@github.com:BasChiara/W3MuNu_T3MRun3.git
 ```
@@ -15,6 +16,7 @@ for AOD-MiniAOD step use `CMSSW_13_0_13` instead
 cmsrel CMSSW_13_0_13 
 cd CMSSW_13_0_13/src/
 cmsenv
+git cms-init
 scram b -j 8
 git clone git@github.com:BasChiara/W3MuNu_T3MRun3.git
 ```
