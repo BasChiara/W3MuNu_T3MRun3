@@ -26,7 +26,7 @@ process.load('Configuration.StandardSequences.EndOfProcess_cff')
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(10000),
+    input = cms.untracked.int32(10),
     output = cms.optional.untracked.allowed(cms.int32,cms.PSet)
 )
 
@@ -65,7 +65,7 @@ process.options = cms.untracked.PSet(
 
 # Production Info
 process.configurationMetadata = cms.untracked.PSet(
-    annotation = cms.untracked.string('Configuration/GenProduction/python/ppW3MuNu_fragment.py nevts:10000'),
+    annotation = cms.untracked.string('Configuration/GenProduction/python/ppW3MuNu_fragment.py nevts:10'),
     name = cms.untracked.string('Applications'),
     version = cms.untracked.string('$Revision: 1.19 $')
 )
@@ -158,8 +158,8 @@ process.generator = cms.EDFilter("Pythia8ConcurrentHadronizerFilter",
 
 process.externalLHEProducer = cms.EDProducer("ExternalLHEProducer",
     #args = cms.vstring('/eos/user/c/cbasile/Tau3MuRun3/W3MuNu_SM_production/genproductions/bin/MadGraph5_aMCatNLO/ppW3MuNu_smfull_el8_amd64_gcc10_CMSSW_12_4_8_tarball.tar.xz'),
-    args = cms.vstring('#GRIDPACKLOC#'),
-    nEvents = cms.untracked.uint32(10000),
+    args = cms.vstring('../gridpack.tgz'),
+    nEvents = cms.untracked.uint32(10),
     numberOfParameters = cms.uint32(1),
     outputFile = cms.string('cmsgrid_final.lhe'),
     scriptName = cms.FileInPath('GeneratorInterface/LHEInterface/data/run_generic_tarball_cvmfs.sh')
@@ -189,7 +189,7 @@ for path in process.paths:
 
 # Customisation from command line
 
-process.RandomNumberGeneratorService.externalLHEProducer.initialSeed=int(19)
+process.RandomNumberGeneratorService.externalLHEProducer.initialSeed=int(33)
 # Add early deletion of temporary data products to reduce peak memory need
 from Configuration.StandardSequences.earlyDeleteSettings_cff import customiseEarlyDelete
 process = customiseEarlyDelete(process)

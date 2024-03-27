@@ -5,26 +5,32 @@ import datetime
 from fnmatch import fnmatch
 from argparse import ArgumentParser
 
-process_name = 'ppW3MuNu'
-production_tag = datetime.date.today().strftime('%Y%b%d')
-name = process_name + '_Run3Summer22EE_LHEGS_'+ production_tag 
+process_name    = 'ppW3MuNu'
+campaign        = 'Run3SummerEE'
+step            = 'LHEGS' # LHE,GEN,SIM
+production_tag  = datetime.date.today().strftime('%Y%b%d')
+version         = 'v1'
+
+request_name    = '_'.join([process_name, campaign, step, version, production_tag])
+work_area       = '_'.join([process_name, campaign,'privateMC', step, version, production_tag]) 
+dataset_name    = '_'.join([process_name, campaign, 'mc', step, version])
 
 config = config()
 
 config.section_('General')
-config.General.requestName = name
-config.General.workArea = '_'.join([process_name, 'Run3Summer22EE','pMC', production_tag])
+config.General.requestName = request_name
+config.General.workArea = work_area 
 config.General.transferOutputs = True
 config.General.transferLogs = True
 
 config.section_('Data')
 config.Data.publication = False
-config.Data.outputPrimaryDataset = process_name + '_MGv5NLO_pythia8_LHEGS'
+config.Data.outputPrimaryDataset = process_name + '_MGv5NLO_pythia8_' + step
 config.Data.outLFNDirBase = '/store/group/phys_bphys/cbasile/%s' % (config.General.workArea)
 config.Data.splitting = 'EventBased'
-config.Data.unitsPerJob = 500 
-config.Data.totalUnits = 10000
-config.Data.outputDatasetTag = process_name + 'mc_evLHEGS' 
+config.Data.unitsPerJob = 1000 
+config.Data.totalUnits = 10
+config.Data.outputDatasetTag = dataset_name
 # chiara: check on DAS the DBS (no need for gridpack)
 #config.Data.inputDBS = 'global'
 #config.Data.inputDBS = 'phys03'

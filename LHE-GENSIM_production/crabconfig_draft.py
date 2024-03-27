@@ -5,32 +5,32 @@ import datetime
 from fnmatch import fnmatch
 from argparse import ArgumentParser
 
-# - production tags -
-process_name = 'ppW3MuNu'
-campaign = 'Run3Summer22EE'
-production_tag = datetime.date.today().strftime('%Y%b%d')
-step = 'LHEGS'
+process_name    = 'ppW3MuNu'
+campaign        = 'Run3SummerEE'
+step            = 'LHEGS' # LHE,GEN,SIM
+production_tag  = datetime.date.today().strftime('%Y%b%d')
+version         = 'v1'
 
-primary_dataset = process_name + '_MGv5NLO_pythia8_'+step 
-request_name = '_'.join([process_name, campaign, step, production_tag]) 
+request_name    = '_'.join([process_name, campaign, step, version, production_tag])
+work_area       = '_'.join([process_name, campaign,'privateMC', step, version, production_tag]) 
+dataset_name    = '_'.join([process_name, campaign, 'mc', step, version])
 
-# - start CRAB3 configuration
 config = config()
 
 config.section_('General')
 config.General.requestName = request_name
-config.General.workArea = '_'.join([process_name, campaign,'pMC', production_tag])
+config.General.workArea = work_area 
 config.General.transferOutputs = True
 config.General.transferLogs = True
 
 config.section_('Data')
 config.Data.publication = False
-config.Data.outputPrimaryDataset = primary_dataset 
+config.Data.outputPrimaryDataset = process_name + '_MGv5NLO_pythia8_' + step
 config.Data.outLFNDirBase = '/store/group/phys_bphys/cbasile/%s' % (config.General.workArea)
 config.Data.splitting = 'EventBased'
-config.Data.unitsPerJob = 500 
+config.Data.unitsPerJob = 1000 
 config.Data.totalUnits = #NUMBEREVENTS#
-config.Data.outputDatasetTag = process_name + 'mc_LHEGS' 
+config.Data.outputDatasetTag = dataset_name
 # chiara: check on DAS the DBS (no need for gridpack)
 #config.Data.inputDBS = 'global'
 #config.Data.inputDBS = 'phys03'
@@ -42,7 +42,6 @@ config.JobType.inputFiles = ['GeneratorInterface/LHEInterface/data/run_generic_t
 config.JobType.disableAutomaticOutputCollection = False # automatic recognition of output files
 #config.JobType.outputFiles = ['ppW3MuNu_Run3Summer22EEwmLHEGS.root']
 #config.JobType.allowUndistributedCMSSW = True
-config.JobType.maxMemoryMB = 4000 #2500
 
 config.section_('User')
 
