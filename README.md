@@ -1,12 +1,14 @@
 # W3MuNu_T3MRun3
 Code to produce private MC sample of W -> 3mu nu (SM) for Tau -> 3mu analysis with Run3 conditions.
 ## CMSSW release
-For LHE-GEN and GEN-AOD step use `CMSSW_12_4_19`
+In order to be able to use CRAB loginin lxplus8.
+For LHE-GEN and GEN-AOD step use `CMSSW_12_4_19` :
 ```
 cmsrel CMSSW_12_4_19
 cd CMSSW_12_4_19/src/
 cmsenv
 scram b -j 8
+git clone git@github.com:BasChiara/W3MuNu_T3MRun3.git
 ```
 for AOD-MiniAOD step use `CMSSW_13_0_13` instead
 ```
@@ -14,9 +16,8 @@ cmsrel CMSSW_13_0_13
 cd CMSSW_13_0_13/src/
 cmsenv
 scram b -j 8
+git clone git@github.com:BasChiara/W3MuNu_T3MRun3.git
 ```
-
-N.B. to lounch the production on crab use lxplus8
 ## GENFRAGMENT
 The genfragment `Configuration/GenProduction/python/ppW3MuNu_fragment.py` runs the `ExternalLHEProducer`, the cmssw-producer which takes in input the gridpack.
 N.B. always build the code with `scram b -j 8` after modifying the fragment
