@@ -51,7 +51,7 @@ Start the production using crab simply running
 ./setup_crab.sh
 python3 crabconfig.py
 ```
-## AODSIM -> MiniAODSIM step
-
-
+## AODSIM -> MiniAODSIM step (W.I.P)
+The code here produce MiniAOD files starting from AODs produced in the previous step.
+If you want to produce AODSIM data with Run3Summer22EE configuration just modify `crabconfig.py` with the GENSIM dataset with its name on DAS.
 
