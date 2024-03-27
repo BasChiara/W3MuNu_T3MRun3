@@ -18,31 +18,40 @@ scram b -j 8
 
 N.B. to lounch the production on crab use lxplus8
 ## GENFRAGMENT
-The genfragment path is `Configuration/GenProduction/python/ppW3MuNu_fragment.py`. It runs the `ExternalLHEProducer` cmssw-producer which takes in input a gridpack
-
+The genfragment `Configuration/GenProduction/python/ppW3MuNu_fragment.py` runs the `ExternalLHEProducer`, the cmssw-producer which takes in input the gridpack.
 N.B. always build the code with `scram b -j 8` after modifying the fragment
 
 ## LHE -> GEN-SIM step
 ```
 cd LHE-GENSIM_production
 ```
+The code in this folder produces GENSIM files starting from a Madgraph gridpack.
 Configuration files are produced with the Run3Summer22EE campaign conditions ([McM](https://cms-pdmv-prod.web.cern.ch/mcm/requests?dataset_name=WtoTauNu_Tauto3Mu_TuneCP5_13p6TeV_pythia8&page=0&shown=127)).\
-If you don't need to change such configuration just modify the number of events, the gridpack location and wheter you want to run on CRAB or not in `privateproduction_LHEGS.sh`, then run
+If you don't need to change such configuration in `privateproduction_LHEGS.sh` just set the parameter `NUMBEREVENTS` and `USECRAB` to the desired values, then run
 ```
-source privateproduction_LHEGS.sh
+./privateproduction_LHEGS.sh
 ```
-the code will produce the config files `ppW3MuNu_fragment_LHEGS_cfg.py` and `crabconfig.py` with the gridpack location and number of events accordingly.
+the code will produce the config files `ppW3MuNu_fragment_LHEGS_cfg.py`, if `USECRAB` is set it also produce the CRAB config file `crabconfig.py`, with the gridpack location and number of events as specified in the set-up. The production is then lounched.
 > [!NOTE]
->If you need to **change the campaign conditions** modify `LHE-SIM.sh` and run
+>If you need to **change the campaign conditions** modify `LHE-SIM.sh` accorndingly and run
 >```
 >rm ppW3MuNu_fragment_LHEGS_cfg_draft.py
->source LHE-SIM.sh
+>./LHE-SIM.sh
 >```
 >The script produces a configfile `ppW3MuNu_fragment_LHEGS_cfg_draft.py` (if existing already, it is processed via `cmsRun`).
 ## GEN-SIM -> AODSIM step
 ```
 cd  GENSIM-AODSIM_production
 ```
-If you want to produce AODSIM data with Run3Summer22EE configuration just just modify the number of events and the GENSIM data location in `privateproduction_GENSimAODSim.py`
+The code in this folder produce AODSIM files starting from the GEN files produced in the previous step. It execute DRPremix and RECO step in one go wrapped together in the executable `jobScript.sh`.
+If you want to produce AODSIM data with Run3Summer22EE configuration just modify `crabconfig.py` with the GENSIM dataset with its name on DAS.
+N.B. running on private files is also possible (work in progress)
+Start the production using crab simply running
+```
+./setup_crab.sh
+python3 crabconfig.py
+```
+## AODSIM -> MiniAODSIM step
+
 
 
