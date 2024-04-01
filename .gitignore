@@ -1,0 +1,11 @@
+# python cache
+*/__pycache__/
+
+# production foldes
+*/ppW3MuNu_Run3Summer22EE_privateMC_LHEG*/
+
+*.root
+*.tgz
+*.lhe
+
+*/GeneratorInterface/
