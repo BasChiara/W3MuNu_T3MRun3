@@ -10,7 +10,8 @@ version         = 'v1'
 
 request_name    = '_'.join([process_name, campaign, step, version, production_tag])
 work_area       = '_'.join([process_name, campaign,'privateMC', step, version, production_tag]) 
-dataset_name    = '_'.join([process_name, campaign, 'mc', step, version])
+dataset_tag     = '_'.join([process_name, campaign, 'mc', step, version])
+dataset_name    = '_'.join([process_name, campaign, 'mc', 'MGv5NLO_pythia8', version])
 
 config = config()
 
@@ -37,13 +38,13 @@ config.section_("Data")
 #config.Data.totalUnits = #NUMBEREVENTS#
 config.Data.unitsPerJob = 1
 config.Data.publication = False 
-config.Data.outputDatasetTag = dataset_name 
+config.Data.outputDatasetTag = dataset_tag
 ## BPH store @ CERN 
 config.Data.outLFNDirBase = '/store/group/phys_bphys/cbasile/%s' % (config.General.workArea)
 ## if local files 
 config.Data.userInputFiles = open('filelist_crab.txt').readlines()
 config.Data.splitting = 'FileBased'
-config.Data.outputPrimaryDataset = process_name + '_MGv5NLO_pythia8_' + step 
+config.Data.outputPrimaryDataset = dataset_name 
 ## if dataset public on DBS
 #config.Data.inputDBS = 'phys03'
 #config.Data.inputDataset = ('')

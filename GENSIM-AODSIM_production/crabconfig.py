@@ -6,11 +6,12 @@ process_name    = 'ppW3MuNu'
 campaign        = 'Run3SummerEE'
 step            = 'GENsimAODsim' # DIGI,DATAMIX,L1,DIGI2RAW,HLT:2022v14,RAW2DIGI,L1Reco,RECO,RECOSIM
 production_tag  = datetime.date.today().strftime('%Y%b%d')
-version         = 'v1'
+version         = 'v2
 
 request_name    = '_'.join([process_name, campaign, step, version, production_tag])
 work_area       = '_'.join([process_name, campaign,'privateMC', step, version, production_tag]) 
-dataset_name    = '_'.join([process_name, campaign, 'mc', step, version])
+dataset_tag     = '_'.join([process_name, campaign, 'mc', step, version])
+dataset_name    = '_'.join([process_name, campaign, 'mc', 'MGv5NLO_pythia8', version])
 
 config = config()
 
@@ -35,14 +36,14 @@ config.section_("Data")
 #config.Data.unitsPerJob = 800
 #config.Data.totalUnits = #NUMBEREVENTS#
 config.Data.publication = True 
-config.Data.outputDatasetTag = dataset_name 
+config.Data.outputDatasetTag = dataset_tag 
 config.Data.ignoreLocality = True
 ## BPH store @ CERN 
 config.Data.outLFNDirBase = '/store/group/phys_bphys/cbasile/%s' % (config.General.workArea)
 ## if local files 
 #config.Data.userInputFiles = open('filelist_crab.txt').readlines()
 #config.Data.splitting = 'FileBased'
-#config.Data.outputPrimaryDataset = process_name + '_MGv5NLO_pythia8_' + step
+#config.Data.outputPrimaryDataset = dataset_name 
 #config.Data.unitsPerJob = 1
 ## if dataset public on DBS
 config.Data.inputDBS = 'phys03'

@@ -1,8 +1,8 @@
 #! /bin/bash
 
 # Define number of events & SEED
-export NUMBEREVENTS=20000
-export RANDOM_STATE=$(date '+%M') 
+export NUMBEREVENTS=50000
+export RANDOM_STATE=$((1 + RANDOM % 100))
 echo "> set-up GEN production with ${NUMBEREVENTS} events and seed ${RANDOM_STATE}"
 
 # Define workdir

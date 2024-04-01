@@ -6,14 +6,15 @@ from fnmatch import fnmatch
 from argparse import ArgumentParser
 
 process_name    = 'ppW3MuNu'
-campaign        = 'Run3SummerEE'
+campaign        = 'Run3Summer22EE'
 step            = 'LHEGS' # LHE,GEN,SIM
 production_tag  = datetime.date.today().strftime('%Y%b%d')
-version         = 'v1'
+version         = 'v2'
 
 request_name    = '_'.join([process_name, campaign, step, version, production_tag])
 work_area       = '_'.join([process_name, campaign,'privateMC', step, version, production_tag]) 
-dataset_name    = '_'.join([process_name, campaign, 'mc', step, version])
+dataset_tag     = '_'.join([process_name, campaign, 'mc', step, version])
+dataset_name    = '_'.join([process_name, campaign, 'mc', 'MGv5NLO_pythia8', version])
 
 config = config()
 
@@ -25,12 +26,12 @@ config.General.transferLogs = True
 
 config.section_('Data')
 config.Data.publication = True
-config.Data.outputPrimaryDataset = process_name + '_MGv5NLO_pythia8_' + step
+config.Data.outputPrimaryDataset = dataset_name 
 config.Data.outLFNDirBase = '/store/group/phys_bphys/cbasile/%s' % (config.General.workArea)
 config.Data.splitting = 'EventBased'
 config.Data.unitsPerJob = 1000 
 config.Data.totalUnits = #NUMBEREVENTS#
-config.Data.outputDatasetTag = dataset_name
+config.Data.outputDatasetTag = dataset_tag
 # chiara: check on DAS the DBS (no need for gridpack)
 #config.Data.inputDBS = 'global'
 #config.Data.inputDBS = 'phys03'
@@ -40,6 +41,7 @@ config.JobType.pluginName = 'PrivateMC'
 config.JobType.psetName = 'ppW3MuNu_fragment_LHEGS_cfg.py'
 config.JobType.inputFiles = ['GeneratorInterface/LHEInterface/data/run_generic_tarball_cvmfs.sh', 'gridpack.tgz']
 config.JobType.disableAutomaticOutputCollection = False # automatic recognition of output files
+config.JobType.maxMemoryMB = 3000 #2500
 #config.JobType.outputFiles = ['ppW3MuNu_Run3Summer22EEwmLHEGS.root']
 #config.JobType.allowUndistributedCMSSW = True
 
