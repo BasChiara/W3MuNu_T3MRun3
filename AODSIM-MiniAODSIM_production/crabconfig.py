@@ -3,7 +3,7 @@ from CRABClient.UserUtilities import config, ClientException
 import datetime
 
 process_name    = 'ppW3MuNu'
-campaign        = 'Run3SummerEE'
+campaign        = 'Run3Summer22EE'
 step            = 'AODsimMiniAODsim' # DIGI,DATAMIX,L1,DIGI2RAW,HLT:2022v14,RAW2DIGI,L1Reco,RECO,RECOSIM
 production_tag  = datetime.date.today().strftime('%Y%b%d')
 version         = 'v1'
@@ -17,18 +17,20 @@ config = config()
 
 config.section_("General")
 config.General.requestName = request_name 
-config.General.workArea = work_area 
+config.General.workArea = work_area
+config.General.transferOutputs = True
 config.General.transferLogs = True
 
 config.section_("JobType")
-#config.JobType.pluginName = 'PrivateMC'
 config.JobType.pluginName = 'Analysis'
-config.JobType.psetName = 'ppW3MuNu_Run3Summer22EEMiniAODSim_cfg.py'
-config.JobType.disableAutomaticOutputCollection = True
-config.JobType.scriptExe = 'jobScript.sh'
+config.JobType.psetName = 'ppW3MuNu_Run3Summer22EEMiniAODsim_cfg.py'
+config.JobType.allowUndistributedCMSSW = True
+# many step together : disableAutomaticOutputCollection =True and handle I/O 
+config.JobType.disableAutomaticOutputCollection = False
+#config.JobType.scriptExe = 'jobScript.sh'
 #config.JobType.outputFiles = ['MiniAOD.root','ppW3MuNu_Run3Summer22EEDRPremix.log', 'ppW3MuNu_Run3Summer22EEAODsim.log', 'FrameworkJobReport.xml', 'job.log']
-config.JobType.outputFiles = ['MiniAODsim.root', 'job.log']
-config.JobType.inputFiles = ['jobScript.sh', 'ppW3MuNu_Run3Summer22EEMiniAODSim_cfg.py']
+#config.JobType.outputFiles = ['MiniAODsim.root']
+#config.JobType.inputFiles = ['jobScript.sh', 'ppW3MuNu_Run3Summer22EEMiniAODSim_cfg.py']
 config.JobType.maxMemoryMB = 4000 #2500
 
 config.section_("Data")

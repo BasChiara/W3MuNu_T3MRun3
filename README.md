@@ -56,5 +56,5 @@ python3 crabconfig.py
 ```
 ## AODSIM -> MiniAODSIM step (W.I.P)
 The code here produce MiniAOD files starting from AODs produced in the previous step.
-If you want to produce AODSIM data with Run3Summer22EE configuration just modify `crabconfig.py` with the GENSIM dataset with its name on DAS.
+If you want to produce AODSIM data with Run3Summer22EE configuration just modify `crabconfig.py` with the GENSIM dataset with its name on DAS. If you want to run on files that are not on DAS follow the instruction in `crabconfig.py` and let crab read the input file from  a text file `filelist_crab.txt`. Such file is created with the script `makeCrab_filelist.py`.
 
