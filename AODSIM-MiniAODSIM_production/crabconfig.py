@@ -6,7 +6,7 @@ process_name    = 'ppW3MuNu'
 campaign        = 'Run3Summer22EE'
 step            = 'AODsimMiniAODsim' # DIGI,DATAMIX,L1,DIGI2RAW,HLT:2022v14,RAW2DIGI,L1Reco,RECO,RECOSIM
 production_tag  = datetime.date.today().strftime('%Y%b%d')
-version         = 'v1'
+version         = 'v2'
 
 request_name    = '_'.join([process_name, campaign, step, version, production_tag])
 work_area       = '_'.join([process_name, campaign,'privateMC', step, version, production_tag]) 
@@ -37,7 +37,7 @@ config.section_("Data")
 #config.Data.unitsPerJob = 800
 #config.Data.totalUnits = #NUMBEREVENTS#
 config.Data.unitsPerJob = 1
-config.Data.publication = False 
+config.Data.publication = True 
 config.Data.outputDatasetTag = dataset_tag
 ## BPH store @ CERN 
 config.Data.outLFNDirBase = '/store/group/phys_bphys/cbasile/%s' % (config.General.workArea)

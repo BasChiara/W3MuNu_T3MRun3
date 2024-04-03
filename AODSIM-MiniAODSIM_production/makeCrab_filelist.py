@@ -1,7 +1,7 @@
 import os
 import glob
 
-AODsim_dir = '/eos/cms/store/group/phys_bphys/cbasile/ppW3MuNu_Run3Summer22EE_pMC_2024Mar28/ppW3MuNu_MGv5NLO_pythia8_LHEGS/ppW3MuNu_mc_Run3Summer22EE_GENSimAODSim/240327_233734/0000/*.root'
+AODsim_dir = '/eos/cms/store/group/phys_bphys/cbasile/ppW3MuNu_Run3Summer22EE_privateMC_GENsimAODsim_v2_2024Apr02/ppW3MuNu_Run3Summer22EE_mc_MGv5NLO_pythia8_v2/ppW3MuNu_Run3Summer22EE_mc_GENsimAODsim_v2/240402_120043/0000/*.root'
 file_list  = glob.glob(AODsim_dir)
 formatted_files = [f.replace('/eos/cms', '', 1) for f in file_list]
 input_to_crab = 'filelist_crab.txt'
